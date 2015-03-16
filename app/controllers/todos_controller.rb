@@ -1,4 +1,5 @@
 class TodosController < ApplicationController
+  before_action :find_todo, except: [:create, :new, :index]
   def index
     @todos = Todo.order(created_at: :desc)
   end
@@ -12,7 +13,7 @@ class TodosController < ApplicationController
   end
 
   def update
-    Todo.find(params[:id]).update_attributes(todo_params)
+    @todo.update_attributes(todo_params)
     redirect_to root_path
   end
 
@@ -21,16 +22,19 @@ class TodosController < ApplicationController
   end
 
   def edit
-    @todo = Todo.find params[:id]
   end
 
   def destroy
-    Todo.find(params[:id]).destroy
+    @todo.destroy
     redirect_to root_path
   end
 
   private
   def todo_params
     params.require(:todo).permit(:name)
+  end
+
+  def find_todo
+    @todo = Todo.find params[:id]
   end
 end
