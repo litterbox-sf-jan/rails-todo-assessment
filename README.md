@@ -19,6 +19,11 @@ Demonstrate that you’ve learned basic ruby, rails, and git concepts while work
 
 Note: don’t overthink this. For example: there are no users - the todos are for everyone, not a specific user’s todos. Just get the basics done.
 
+A couple things to keep in mind:
+
+- Use resources for your routes
+- Make sure that when you delete a TodoList, the corresponding todos that are part of that list are destroyed as well.
+
 ## Bonus
 
 Implement as much of the app as possible as a single page app, with AJAX, and no page refreshes. 
