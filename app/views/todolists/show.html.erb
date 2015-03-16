@@ -1,0 +1,20 @@
+<%= @todolist.title  %>'s todos:
+<% @todolist.todos.each do |t| %>
+  <li>
+  <%= link_to t.name, edit_todo_path(t) %> | <%= link_to "Delete", todo_path(t), method: :delete, data: {confirm: "Are you sure?"} %>
+  </li>
+<% end %>
+
+<%= link_to "Add a todo", new_todolist_todo_path(@todolist)%>
+
+<p>
+  <%= link_to "Create a new list", new_todolist_path%>
+</p>
+
+<p>
+  <%= link_to "Edit this list", edit_todolist_path%>
+</p>
+
+<p>
+  <%= link_to "Delete this list", todolist_path, method: :delete, data: {confirm: "Are you sure?"}%>
+</p>

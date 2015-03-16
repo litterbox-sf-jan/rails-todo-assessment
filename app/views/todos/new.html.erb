@@ -1,2 +1,8 @@
-<h1>New todo</h1>
-<%= render 'form' %>
+<h1>Add a new list</h1>
+
+<%= form_for [:todolist, @todo] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, autofocus: true %>
+  <%= f.submit %>
+<% end %>
+

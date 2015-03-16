@@ -1,12 +1,18 @@
 class TodosController < ApplicationController
   before_action :find_todo, except: [:create, :new, :index]
+  before_action :find_todolist, only: [:index, :create, :new]
+
   def index
-    @todos = Todo.order(created_at: :desc)
+    @todos = @todolist.todos.order(created_at: :desc)
   end
 
   def create
-    Todo.create todo_params
-    redirect_to root_path
+    @todo = @todolist.todos.create todo_params
+    if @todo.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def update
@@ -15,10 +21,11 @@ class TodosController < ApplicationController
   end
 
   def new
-    @todo = Todo.new
+    @todo = @todolist.todos.new
   end
 
   def edit
+    @todo = Todo.find params[:id]
   end
 
   def destroy
@@ -33,5 +40,9 @@ class TodosController < ApplicationController
 
   def find_todo
     @todo = Todo.find params[:id]
+  end
+
+  def find_todolist
+    @todolist = TodoList.find params[:todolist_id]
   end
 end

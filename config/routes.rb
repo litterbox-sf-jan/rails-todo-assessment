@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
-  resources :todos, except: :show
-  root 'todos#index'
+
+  resources :todolists do
+    resources :todos, except: :show, shallow: true
+  end
+
+  root 'todolists#index'
 end
