@@ -4,9 +4,6 @@ class TodosController < ApplicationController
     @todos = Todo.order(created_at: :desc)
   end
 
-  def show
-  end
-
   def create
     Todo.create todo_params
     redirect_to root_path
