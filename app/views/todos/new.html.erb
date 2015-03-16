@@ -3,6 +3,6 @@
 <%= form_for [:todolist, @todo] do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name, autofocus: true %>
-  <%= f.submit %>
+  <%= f.submit class: "btn btn-success" %>
 <% end %>
 
