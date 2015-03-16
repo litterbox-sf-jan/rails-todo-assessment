@@ -1,6 +1,2 @@
 <h1>New todo</h1>
-<%= form_for @todo do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.submit %>
-<% end %>
+<%= render 'form' %>

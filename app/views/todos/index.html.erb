@@ -2,6 +2,6 @@
 <%= link_to "Add todo", new_todo_path %>
 <ul>
 <% @todos.each do |t| %>
-  <li><%= t.name %></li>
+  <li><%= link_to t.name, edit_todo_path(t) %></li>
 <% end %>
 </ul>
