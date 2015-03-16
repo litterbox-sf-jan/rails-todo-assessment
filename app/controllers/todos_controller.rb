@@ -1,6 +1,4 @@
 class TodosController < ApplicationController
-  after_action :redirect_to_root, only: [:create, :update]
-
   def index
     @todos = Todo.order(created_at: :desc)
   end
@@ -10,10 +8,12 @@ class TodosController < ApplicationController
 
   def create
     Todo.create todo_params
+    redirect_to root_path
   end
 
   def update
     Todo.find(params[:id]).update_attributes(todo_params)
+    redirect_to root_path
   end
 
   def new
@@ -25,14 +25,12 @@ class TodosController < ApplicationController
   end
 
   def destroy
+    Todo.find(params[:id]).destroy
+    redirect_to root_path
   end
 
   private
   def todo_params
     params.require(:todo).permit(:name)
-  end
-
-  def redirect_to_root
-    redirect_to root_path
   end
 end
