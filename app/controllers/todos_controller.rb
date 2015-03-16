@@ -7,14 +7,22 @@ class TodosController < ApplicationController
   end
 
   def create
+    Todo.create todo_params
+    redirect_to root_path
   end
 
   def update
   end
 
   def new
+    @todo = Todo.new
   end
 
   def destroy
+  end
+
+  private
+  def todo_params
+    params.require(:todo).permit(:name)
   end
 end
